@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+.topnav a.active {
+  background-color: #0478aa;
+  color: white;
+  font-size: 30px;
+}
+
+.topnav a{
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 30px;
+}
+
+.header{
+  text-align: center;
+  font-size: 40px;
+}

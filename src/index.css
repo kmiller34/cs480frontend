@@ -18,7 +18,7 @@ code {
 }
 
 .topnav a.active {
-  background-color: #0478aa;
+  background-color: #0452aa;
   color: white;
   font-size: 30px;
 }
@@ -32,7 +32,50 @@ code {
   font-size: 30px;
 }
 
+.topnav a:hover {
+  background-color: #364d6c;
+  color: rgb(249, 246, 246);
+}
+
 .header{
   text-align: center;
   font-size: 40px;
+}
+
+.form{
+  text-align: center;
+}
+
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.navbar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.navbar a:hover {
+  background-color: #364d6c;
+  color: rgb(249, 246, 246);
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+table, th, td {
+  border: 1px solid;
+  text-align: center;
+  width: 50%;
 }

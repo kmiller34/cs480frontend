@@ -4,7 +4,12 @@ import {Home} from './Home';
 import {Admin} from './Admin';
 import {Patient} from './Patient';
 import {Nurse} from './Nurse';
-import {Signin} from './Signin'
+
+import { PatientRegister } from './PatientRegister';
+import {Signin} from './Signin';
+import {UpdatePatient} from './UpdatePatient';
+import { PatientScheduling } from './PatientSchedule';
+
 import {BrowserRouter, Route,Routes,NavLink} from 'react-router-dom';
 
 function App() {
@@ -50,6 +55,9 @@ function App() {
         <Route path = '/admin' element = {<Admin/>}/>
         <Route path = '/nurse' element = {<Nurse/>}/>
         <Route path = '/patient' element = {<Patient/>}/>
+        <Route path="/patientRegister" element={<PatientRegister/>} />
+        <Route path = "/updatePatient" element={<UpdatePatient/>}/>
+        <Route path = "/patientScheduling" element={<PatientScheduling/>}/>
       </Routes> 
     </div>
     </BrowserRouter>

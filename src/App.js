@@ -9,6 +9,12 @@ import { PatientRegister } from './PatientRegister';
 import {Signin} from './Signin';
 import {UpdatePatient} from './UpdatePatient';
 import { PatientScheduling } from './PatientSchedule';
+import {ViewAccount} from './ViewAccount';
+import {NurseRegister} from './NurseRegister';
+import {ViewPatients} from './ViewPatients';
+import {UpdateNurse} from './UpdateNurse';
+import {UpdateVaccine} from './UpdateVaccine';
+import { UpdateNurseInfo } from './UpdateNurseInfo';
 
 import {BrowserRouter, Route,Routes,NavLink} from 'react-router-dom';
 
@@ -58,6 +64,13 @@ function App() {
         <Route path="/patientRegister" element={<PatientRegister/>} />
         <Route path = "/updatePatient" element={<UpdatePatient/>}/>
         <Route path = "/patientScheduling" element={<PatientScheduling/>}/>
+        <Route path = "/viewAccount" element={<ViewAccount/>}/>
+        <Route path = "/nurseRegister" element = {<NurseRegister/>}/>
+        <Route path = "/viewPatients" element = {<ViewPatients/>}/>
+        <Route path = "/updateNurse" element = {<UpdateNurse/>}/>
+        <Route path = "/updateVaccine" element = {<UpdateVaccine/>}/>
+        <Route path = "/updateNurseInfo" element = {<UpdateNurseInfo/>}/>
+
       </Routes> 
     </div>
     </BrowserRouter>

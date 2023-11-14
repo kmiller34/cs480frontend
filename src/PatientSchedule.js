@@ -29,6 +29,7 @@ export class PatientScheduling extends Component{
         return(
 
             <div className='form'>
+                <button type="button" class="btn btn-outline-danger">Delete</button>
                 <table>
                 
                 <tr>
@@ -47,7 +48,7 @@ export class PatientScheduling extends Component{
                 </tbody> */}
                 
                 </table>
-                <button type="button" class="btn btn-outline-danger">Delete</button>
+                
             </div>
         )
     }

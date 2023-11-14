@@ -1,40 +1,36 @@
-import React, {Component} from 'react'
-import {Link} from 'react-router-dom';
-import {Patient} from './Patient';
-import{variables} from './Variables'
+import React, {Component} from "react";
+import {variables} from './Variables.js'
+import {Link} from 'react-router-dom'
 
-export class PatientRegister extends Component{
+export class NurseRegister extends Component{
     constructor(props){
         super(props);
 
-        this.state = {
-            ssn: "",
+        this.state={
+            employeeID: "",
             address: "",
             age: "",
-            gender: "",
-            race: "",
-            medicalHistory: "",
-            occupationalClass: "",
             phoneNumber: "",
+            gender: "",
+            name: "",
             username: ""
         }
     }
 
     handleFormSubmit = () => {
-        const patientData = {
+        const nurseData = {
             ssn: this.state.ssn,
+            employeeID: this.state.employeeID,
             address: this.state.address,
             age: this.state.age,
-            race:this.state.race,
             phoneNumber: this.state.phoneNumber,
             gender: this.state.gender,
-            medicalHistory:this.state.medicalHistory,
-            occupationalClass:this.state.occupationalClass,
             name: this.state.name,
-            username: this.state.username
+            username: this.state.username,
+            password: this.state.password
         };
     
-        fetch('http://127.0.0.1:8000/patient', {
+        fetch('http://127.0.0.1:8000/nurse', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -48,6 +44,7 @@ export class PatientRegister extends Component{
                 console.error('Error:', error);
             });
         };
+    
     render(){
         return(
             <div>
@@ -56,72 +53,67 @@ export class PatientRegister extends Component{
                         SSN(just the number, no '-')
                     </text>
                     <div class="container">
-                        <input type="password" name="ssn" value = {this.state.ssn} onChange = {(e) => this.setState({ssn: e.target.value})} required/>
+                        <input type="text" name="uname" required/>
                         <div>
                             <text>
-                                Address
+                                employeeID
                             </text>
                             <div></div>
-                            <input type="text" name="address" value = {this.state.address} required/>
+                            <input type="text" name="employeeID" value = {this.state.employeeID} onChange = {(e) => this.setState({employeeID: e.target.value})}required/>
                         </div>
                         <div>
                             <text>
-                                Age
+                                address
                             </text>
                             <div></div>
-                            <input type="text" name="psw" required/>
+                            <input type="text" name="address" value = {this.state.address} onChange = {(e) => this.setState({address: e.target.value})} required/>
                         </div>
                         <div>
                             <text>
-                                Gender
+                                age
                             </text>
                             <div></div>
-                            <input type="text" name="psw" required/>
+                            <input type="text" name="age" value = {this.state.age} onChange={(e) => this.setState({age: e.target.value})} required/>
                         </div>
                         <div>
                             <text>
-                                Race
+                                phone number
                             </text>
                             <div></div>
-                            <input type="text" name="psw" required/>
+                            <input type="text" name="phoneNumber" value = {this.state.phoneNumber} onChange={(e) => this.setState({phoneNumber: e.target.value})} required/>
                         </div>
                         <div>
                             <text>
-                                Medical History
+                                gender
                             </text>
                             <div></div>
-                            <input type="text" name="psw" required/>
+                            <input type="text" name="gender" value = {this.state.gender} onChange = {(e) => this.setState({gender: e.target.value})} required/>
                         </div>
                         <div>
                             <text>
-                                Occupational Class
+                                name
                             </text>
                             <div></div>
-                            <input type="text" name="psw" required/>
-                        </div>
-                        <div>
-                            <text>
-                                Phone Number
-                            </text>
-                            <div></div>
-                            <input type="text" name="psw" required/>
+                            <input type="text" name="name" value = {this.state.name} onChange={(e) => this.setState({name: e.target.value})} required/>
                         </div>
                         <div>
                             <text>
                                 User Name
                             </text>
                             <div></div>
-                            <input type="text" name="psw" required/>
+                            <input type="text" name="username" value = {this.state.username} onChange={(e) => this.setState({username: e.target.value})} required/>
                         </div>
                         <div>
                             <text>
                                 Password
                             </text>
                             <div></div>
-                            <input type="text" name="psw" required/>
+                            <input type="password" name="psw" required/>
                         </div>
-                        <Link to = "/Patient">
-                            <button type = "button">Register</button>
+                        <Link to = "/Admin">
+                        <button type="button" onClick={this.handleFormSubmit}>
+                            Register
+                        </button>
                         </Link>
                     </div>
                 </div>

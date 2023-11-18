@@ -13,47 +13,68 @@ export class NurseRegister extends Component{
             phoneNumber: "",
             gender: "",
             name: "",
-            username: ""
+            username: "",
+            password: ""
         }
     }
 
     handleFormSubmit = () => {
-        const nurseData = {
-            ssn: this.state.ssn,
-            employeeID: this.state.employeeID,
-            address: this.state.address,
-            age: this.state.age,
-            phoneNumber: this.state.phoneNumber,
-            gender: this.state.gender,
-            name: this.state.name,
+        const credentialsData = {
             username: this.state.username,
-            password: this.state.password
+            password: this.state.password,
+            position: "Nurse"
         };
     
-        fetch('http://127.0.0.1:8000/nurse', {
+        // First, create the Credentials record
+        fetch('http://127.0.0.1:8000/credentials', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(nurseData),
+            body: JSON.stringify(credentialsData),
         })
         .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);})
+        .then(credentialsData => {
+            console.log('Credentials Success:', credentialsData);
+    
+            // Now, create the Patient record
+            const nurseData = {
+                employeeID: this.state.employeeID,
+                address: this.state.address,
+                age: this.state.age,
+                phoneNumber: this.state.phoneNumber,
+                gender: this.state.gender,
+                name: this.state.name,
+                username: this.state.username
+            };
+    
+            fetch('http://127.0.0.1:8000/nurse', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(nurseData),
+            })
+            .then(response => response.json())
+            .then(nurseData => {
+                console.log('Nurse Success:', nurseData);
+            })
             .catch((error) => {
-                console.error('Error:', error);
+                console.error('Nurse Error:', error);
             });
-        };
+        })
+        .catch((error) => {
+            console.error('Credentials Error:', error);
+        });
+    };
     
     render(){
         return(
             <div>
                 <div>
-                    <text>
-                        SSN(just the number, no '-')
-                    </text>
+                    
                     <div class="container">
-                        <input type="text" name="uname" required/>
+                        
                         <div>
                             <text>
                                 employeeID
@@ -108,7 +129,7 @@ export class NurseRegister extends Component{
                                 Password
                             </text>
                             <div></div>
-                            <input type="password" name="psw" required/>
+                            <input type="password" name="position" value = {this.state.password} onChange={(e) => this.setState({password: e.target.value})} required/>
                         </div>
                         <Link to = "/Admin">
                         <button type="button" onClick={this.handleFormSubmit}>

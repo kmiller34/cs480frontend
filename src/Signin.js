@@ -89,10 +89,10 @@ export class Signin extends Component{
                     <h3>Please Sign In</h3>
                     <div className="container">
                         <label htmlFor="uname"><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" name="username" onChange={this.handleInputChange}/>
+                        <input type="text" placeholder="Enter Username" name="username" onChange={this.handleInputChange} required />
                         <div>
                             <label htmlFor="psw"><b>Password</b></label>
-                            <input type="password" placeholder="Enter Password" name="password" onChange={this.handleInputChange}/>
+                            <input type="password" placeholder="Enter Password" name="password" onChange={this.handleInputChange} required />
                         </div>
                         <div className="form-check">
                             {/* Radio buttons for user type selection */}

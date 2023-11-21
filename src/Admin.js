@@ -7,6 +7,7 @@ export class Admin extends Component{
     render(){
         return(
             <div class = "navbar">
+                <NavLink className = "btn btn-light btn-outline-primary" to = "/addVaccine">Add Vaccine</NavLink>
                 <NavLink className = "btn btn-light btn-outline-primary" to = "/updateVaccine">Update Vaccine Info</NavLink>      
                 <NavLink className = "btn btn-light btn-outline-primary" to ="/nurseRegister">
                     Add Nurse
@@ -14,7 +15,9 @@ export class Admin extends Component{
                 <NavLink className = "btn btn-light btn-outline-primary" to ="/updateNurse">
                     Update Nurses Info
                 </NavLink>
+                <NavLink className = "btn btn-light btn-outline-primary" to="/viewNurse">View Nurse Info</NavLink>
                 <NavLink className = "btn btn-light btn-outline-primary" to ="/viewPatients">View Patient Info</NavLink>
+
 
             </div>
         )

@@ -15,6 +15,8 @@ import {ViewPatients} from './ViewPatients';
 import {UpdateNurse} from './UpdateNurse';
 import {UpdateVaccine} from './UpdateVaccine';
 import { UpdateNurseInfo } from './UpdateNurseInfo';
+import {AddVaccine} from './AddVaccine';
+import {ViewNurse} from './ViewNurse';
 
 import {BrowserRouter, Route,Routes,NavLink} from 'react-router-dom';
 
@@ -70,7 +72,8 @@ function App() {
         <Route path = "/updateNurse" element = {<UpdateNurse/>}/>
         <Route path = "/updateVaccine" element = {<UpdateVaccine/>}/>
         <Route path = "/updateNurseInfo" element = {<UpdateNurseInfo/>}/>
-
+        <Route path = "/addVaccine" element = {<AddVaccine/>}/>
+        <Route path = "/viewNurse" element = {<ViewNurse/>}/>
       </Routes> 
     </div>
     </BrowserRouter>

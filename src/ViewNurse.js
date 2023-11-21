@@ -1,22 +1,21 @@
 import React, {Component} from 'react'
 
-export class ViewPatients extends Component{
+export class ViewNurse extends Component{
     constructor(props){
         super(props);
         this.state = {
-            patient: [],
+            nurse: [],
             schedule: [],
-            record: [],
         };
     }
   
 
     fetchPatients = () => {
-        fetch('http://127.0.0.1:8000/patient')
+        fetch('http://127.0.0.1:8000/nurse')
         .then(response => response.json())
         .then(data=> {
             // console.log("Patient Data:", data);
-            this.setState({patient:data});
+            this.setState({nurse:data});
         })
         .catch(error => {
             console.error("Error Fetching Patients")
@@ -34,25 +33,31 @@ export class ViewPatients extends Component{
         });
     };
 
-    fetchVaccinationRecord = () => {
-        fetch('http://127.0.0.1:8000/vaccinationRecord')
-        .then((response) => response.json())
-        .then((data) => {
-            this.setState({record: data})
-        })
-        .catch((error) => {
-            console.error('Error Fetching Vaccine Record')
-        });
-    };
-
+    deleteClick(employeeID){
+        if(window.alert("Are you sure?")){
+            fetch('http://127.0.0.1:8000/nurse' + employeeID,{
+                method: 'DELETE',
+                headers:{
+                    'Accept':'application/json',
+                    'Content-Type':'application/json'
+                }
+            })
+            .then(res=>res.json)
+            .then((result) => {
+                alert(result);
+                this.refreshList();
+            }, (error) => {
+                alert("Failed");
+            })
+        }
+    }
     componentDidMount(){
         this.fetchPatients();
         this.fetchVaccinationSchedule();
-        this.fetchVaccinationRecord();
     }
     render(){
         const {
-            patient, schedule, record
+            nurse, schedule
         } = this.state;
         console.log(schedule);
         return(
@@ -60,33 +65,33 @@ export class ViewPatients extends Component{
                 <table>
                 <thead>
                 <tr>
-                <th>ssn</th>
+                <th>Employee ID</th>
                     <th>name</th>
                     <th>address</th>
                     <th>age</th>
                     <th>gender</th>
-                    <th>race</th>
-                    <th>
-                    medical history
-                    </th>
-                    <th>occupation</th>
                     <th>phone number</th>
                     <th>username</th>
+                    <th>Delete</th>
                 </tr> 
                 </thead>
                 <tbody>
-                    {patient.map(pat => (
-                    <tr key={pat.ssn}>
-                        <td>{pat.ssn}</td>
+                    {nurse.map(pat => (
+                    <tr key={pat.employeeID}>
+                        <td>{pat.employeeID}</td>
                         <td>{pat.name}</td>
                         <td>{pat.address}</td>
                         <td>{pat.age}</td>
                         <td>{pat.gender}</td>
-                        <td>{pat.race}</td>
-                        <td>{pat.medicalHistory}</td>
-                        <td>{pat.occupationalClass}</td>
                         <td>{pat.phoneNumber}</td>
                         <td>{pat.username}</td>
+                        <td>
+                            <button type = "button" 
+                            
+                            onClick = {() => this.deleteClick(pat.employeeID)}>
+                                delete
+                            </button>
+                        </td>
                     <td>{/* Display scheduled vaccines here */}</td>
                 </tr>
                     ))}    
@@ -108,27 +113,6 @@ export class ViewPatients extends Component{
                         {schedule.map((item) => (
                             <tr key={item.vaccID}>
                                 <td>{item.timeSlot}</td>
-                                <td>{item.patientID.name}</td>
-                                <td>{item.nurseID.name}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>
-                                Vaccine Name
-                            </th>
-                            <th>Patient Name</th>
-                            <th>Administred BY</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {record.map((item) => (
-                            <tr key = {item.recordID}>
-                                <td>{item.vaccineID.name}</td>
                                 <td>{item.patientID.name}</td>
                                 <td>{item.nurseID.name}</td>
                             </tr>

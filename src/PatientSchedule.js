@@ -1,55 +1,48 @@
-import React, {Component} from 'react'
-import {variables} from './Variables.js';
-import {BrowserRouter, Route,Routes,NavLink} from 'react-router-dom';
-export class PatientScheduling extends Component{
+import React, { Component } from 'react';
+import{Link} from 'react-router-dom'
 
-    // constructor(props){
-    //     super(props);
+export class PatientScheduling extends Component {
 
-    //     this.state={
-    //         vaccineScheduling:[]
-    //     }
-    // }
-
-    // refreshList(){
-    //     fetch(variables.API_URL+'vaccineScheduling')
-    //     .then(response=>response.json())
-    //     .then(data=>{
-    //         this.setState({vaccineScheduling:data})
-    //     });
-    // }
-    // componentDidMount(){
-    //     this.refreshList();
-    // }
-    
-    render(){
-        // const{
-        //     vaccineScheduling
-        // }=this.state;
-        return(
-
-            <div className='form'>
-                <button type="button" class="btn btn-outline-danger">Delete</button>
-                <table>
-                
-                <tr>
-                    <th>
-                        Time
-                    </th>
-                    <th>Vaccine</th>
-                    <th>Nurse</th>
-                </tr>
-                
-                {/* <tbody>
-                    {vaccineScheduling.map(dep=>
-                        <tr key = {dep.patientID}>
-                            <td>{dep.timeSlot}</td>
-                        </tr>)}
-                </tbody> */}
-                
-                </table>
-                
+  render() {
+    return (
+        <div>
+            <div>
+                <text>
+                    patientID
+                </text>
+                <div></div>
+                <input type="text" required/>
             </div>
-        )
-    }
+
+            <div>
+                <text>
+                    vaccineID
+                </text>
+                <div></div>
+                <input type ="text" required/>
+            </div>
+            <div>
+                <text>
+                    Time (Please enter in Year-Month-Day Hour:Minute:Second)
+                </text>
+                <div></div>
+                <input type = "text" required/>
+            </div>
+            <div>
+                <text>
+                    Nurse (If applicable)
+                </text>
+                <div></div>
+                <input type = "text"/>
+            </div>
+
+            <Link to = "/Patient">
+                <button>
+                    Schedule
+                </button>
+            </Link>
+        </div>
+        
+    );
+  }
 }

@@ -25,7 +25,7 @@ export class Signin extends Component{
 
     handleUserTypeChange = (e) => {
         this.setState({
-            userType: e.target.value,
+            position: e.target.value,
         });
     }
 
@@ -51,19 +51,21 @@ export class Signin extends Component{
             }
         })
         .then(data => {
-            if (data.isAuthenticated) {
+            console.log("data " + data.username);
+            if (!data.isAuthenticated) {
+                console.log("position " + position);
                 switch (position) {
                     case 'patient':
-                      
-                        this.setState({ redirect: '/patient' });
+                        console.log("yo");
+                        this.setState({ redirect: '/Patient' });
                         break;
                     case 'nurse':
                      
-                        this.setState({ redirect: '/nurse' });
+                        this.setState({ redirect: '/Nurse' });
                         break;
                     case 'admin':
                        
-                        this.setState({ redirect: '/admin' });
+                        this.setState({ redirect: '/Admin' });
                         break;
                     default:
                        
@@ -72,7 +74,7 @@ export class Signin extends Component{
             } else {
                 // Handle authentication failure
                 this.setState({ errorMessage: 'Invalid credentials' });
-                console.log("Username" + username);
+                console.log("passowrd " + password);
             }
         })
         .catch(error => {
@@ -89,47 +91,49 @@ export class Signin extends Component{
                     <h3>Please Sign In</h3>
                     <div className="container">
                         <label htmlFor="uname"><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" name="username" onChange={this.handleInputChange} required />
+                        <input type="text" placeholder="Enter Username" name="username" value = {this.state.username} onChange = {(e) => this.setState({username: e.target.value})} required />
                         <div>
                             <label htmlFor="psw"><b>Password</b></label>
-                            <input type="password" placeholder="Enter Password" name="password" onChange={this.handleInputChange} required />
+                            <input type="password" placeholder="Enter Password" name="password" value = {this.state.password} onChange = {(e) => this.setState({password: e.target.value})} required />
                         </div>
                         <div className="form-check">
                             {/* Radio buttons for user type selection */}
                             <input
                                 className="form-check-input"
                                 type="radio"
-                                name="userType"
+                                name="position"
                                 id="flexRadioDefault1"
                                 value="patient"
-                                checked={this.state.userType === 'patient'}
+                                checked={this.state.position === 'patient'}
                                 onChange={this.handleUserTypeChange}
                             />
                             <label className="form-check-label" htmlFor="flexRadioDefault1">Patient</label>
                             <input
                                 className="form-check-input"
                                 type="radio"
-                                name="userType"
+                                name="position"
                                 id="flexRadioDefault1"
                                 value="nurse"
-                                checked={this.state.userType === 'nurse'}
+                                checked={this.state.position === 'nurse'}
                                 onChange={this.handleUserTypeChange}
                             />
                             <label className="form-check-label" htmlFor="flexRadioDefault1">Nurse</label>
                             <input
                                 className="form-check-input"
                                 type="radio"
-                                name="userType"
+                                name="position"
                                 id="flexRadioDefault1"
                                 value="admin"
-                                checked={this.state.userType === 'admin'}
+                                checked={this.state.position === 'admin'}
                                 onChange={this.handleUserTypeChange}
                             />
                             <label className="form-check-label" htmlFor="flexRadioDefault1">Admin</label>
                             {/* Similar radio buttons for 'nurse' and 'admin' */}
 
                         </div>
-                        <button type="button" onClick={this.checkCredentials}>Login</button>
+                        <Link to = {this.state.redirect}>
+                            <button type="button" onClick={this.checkCredentials}>Login</button>
+                        </Link>
                         <p className="error-message">{this.state.errorMessage}</p>
                         <Link to="/PatientRegister">
                             <button type="button">Register</button>

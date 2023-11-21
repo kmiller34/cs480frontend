@@ -10,6 +10,7 @@ export class PatientRegister extends Component{
         this.state = {
             ssn: "",
             address: "",
+            name: "",
             age: "",
             gender: "",
             race: "",
@@ -44,6 +45,7 @@ export class PatientRegister extends Component{
             const patientData = {
                 ssn: this.state.ssn,
                 address: this.state.address,
+                name: this.state.name,
                 age: this.state.age,
                 race: this.state.race,
                 phoneNumber: this.state.phoneNumber,
@@ -87,6 +89,13 @@ export class PatientRegister extends Component{
                             </text>
                             <div></div>
                             <input type="text" name="address" value = {this.state.address} onChange = {(e) => this.setState({address: e.target.value})} required/>
+                        </div>
+                        <div>
+                            <text>
+                                Name
+                            </text>
+                            <div></div>
+                            <input type="text" name = "name" value = {this.state.name} onChange = {(e) => this.setState({name:e.target.value})}/>
                         </div>
                         <div>
                             <text>
